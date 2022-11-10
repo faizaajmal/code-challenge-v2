@@ -22,16 +22,18 @@ class UserMapperTest extends FrameworkTest
     {
         /** @var User $user */
         $user = $this->userFactory->create([
-            'name'     => 'Anakin Skywalker',
-            'email'    => 'Vader@Empire.com',
-            'password' => Hash::make('IHateSand123'),
+            'name'      => 'Anakin Skywalker',
+            'nick_name' => 'AnakinSky',
+            'email'     => 'Vader@Empire.com',
+            'password'  => Hash::make('IHateSand123'),
         ]);
         $result = $this->userMapper->single($user);
         $this->assertEquals(
             [
-                'id'    => $user->id,
-                'name'  => $user->name,
-                'email' => $user->email,
+                'id'        => $user->id,
+                'name'      => $user->name,
+                'nick_name' => $user->nick_name,
+                'email'     => $user->email,
             ],
             $result
         );

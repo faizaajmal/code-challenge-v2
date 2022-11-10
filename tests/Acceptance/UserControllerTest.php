@@ -21,13 +21,14 @@ class UserControllerTest extends FrameworkTest
     {
         /** @var User $user */
         $user   = $this->userFactory->create();
-        $result = $this->get("/api/users/$user->id");
+        $result = $this->get("/api/users/{$user->id}");
         $result->assertSuccessful();
         $this->assertEquals(
             [
-                'id'    => $user->id,
-                'name'  => $user->name,
-                'email' => $user->email,
+                'id'        => $user->id,
+                'name'      => $user->name,
+                'nick_name' => $user->nick_name,
+                'email'     => $user->email,
             ],
             json_decode($result->getContent(), true)
         );
@@ -36,13 +37,14 @@ class UserControllerTest extends FrameworkTest
     public function testUpdateRequestUpdatesUserData()
     {
         /** @var User $user */
-        $user   = $this->userFactory->create();
+        $user = $this->userFactory->create();
         $data = [
-            'id'    => $user->id,
-            'name'  => $this->faker->name,
-            'email' => $user->email,
+            'id'        => $user->id,
+            'name'      => $this->faker->unique()->name,
+            'nick_name' => $this->faker->unique()->name,
+            'email'     => $user->email,
         ];
-        $result = $this->put("/api/users/$user->id", $data);
+        $result = $this->put("/api/users/{$user->id}", $data);
         $result->assertSuccessful();
         $this->assertEquals($data, json_decode($result->getContent(), true));
     }
@@ -55,7 +57,7 @@ class UserControllerTest extends FrameworkTest
             'password' => 'hen rooster chicken duck',
         ];
         $this->assertFalse($this->repository->getModel()->newQuery()->where('email', $email)->exists());
-        $result = $this->post("/api/users", $data);
+        $result = $this->post('/api/users', $data);
         $result->assertSuccessful();
         $this->assertTrue($this->repository->getModel()->newQuery()->where('email', $email)->exists());
     }
