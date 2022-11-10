@@ -44,9 +44,10 @@ class UserMapper extends Mapper
     {
         /** @var User $user */
         return [
-            'id'    => $user->id,
-            'name'  => $user->name,
-            'email' => $user->email,
+            'id'        => $user->id,
+            'name'      => $user->name,
+            'nick_name' => $user->nick_name,
+            'email'     => $user->email,
         ];
     }
 }
