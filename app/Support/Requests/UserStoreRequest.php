@@ -47,7 +47,6 @@ class UserStoreRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -56,10 +55,10 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|max:191|min:1',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|string|min:8|max:191',
+            'name'      => 'required|string|max:191|min:1',
             'nick_name' => 'sometimes|string|max:30|min:5|unique:users,nick_name',
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required|string|min:8|max:191',
         ];
     }
 }
