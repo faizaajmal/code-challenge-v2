@@ -53,6 +53,7 @@ class UserUpdateRequest extends FormRequest
             'name'     => 'string|max:191|min:1',
             'password' => 'string|min:8|max:191',
             'email'    => [
+            'nick_name' => 'sometimes|string|max:30|min:5|unique:users,nick_name,' . request()->route('user')->id,
                 'email',
                 Rule::unique('users')->ignore(request()->route('user')->id),
             ],
