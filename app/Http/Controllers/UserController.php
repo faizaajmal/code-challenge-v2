@@ -75,20 +75,20 @@ class UserController extends Controller
      *
      * @param UserStoreRequest $request
      *
-     * @return JsonResponse
      * @throws Exception
+     * @return JsonResponse
      */
     public function store(UserStoreRequest $request): JsonResponse
     {
         $user = $this->userRepository->create([
-            'name'     => $request->input('name'),
-            'email'    => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'name'      => $request->input('name'),
+            'nick_name' => $request->input('nick_name'),
+            'email'     => $request->input('email'),
+            'password'  => Hash::make($request->input('password')),
         ]);
 
         return \Response::json($this->userMapper->single($user));
     }
-
 
     /**
      * @OA\Put(
@@ -126,9 +126,10 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user): JsonResponse
     {
         $data = [
-            'name'     => trim($request->input('name')),
-            'email'    => trim($request->input('email')),
-            'password' => Hash::make(trim($request->input('password')) ?: null),
+            'name'      => trim($request->input('name')),
+            'nick_name' => trim($request->input('nick_name')),
+            'email'     => trim($request->input('email')),
+            'password'  => Hash::make(trim($request->input('password')) ?: null),
         ];
 
         $user->fill($data)->save();
