@@ -17,6 +17,14 @@ use Illuminate\Foundation\Http\FormRequest;
  *      minLength=1,
  *      maxLength=191,
  *   ),
+ *  @OA\Property(
+ *      property="nick_name",
+ *      type="string",
+ *      example="JaneDoe",
+ *      description="Nick name",
+ *      minLength=3,
+ *      maxLength=30,
+ *   ),
  *   @OA\Property(
  *      property="email",
  *      type="string",

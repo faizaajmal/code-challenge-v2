@@ -14,6 +14,89 @@
         }
     ],
     "paths": {
+        "/api/user/{nickname}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Find user by nickname",
+                "description": "returns user",
+                "operationId": "b7ea87b507bdd865a1495b40ad7daf95",
+                "parameters": [
+                    {
+                        "name": "nickname",
+                        "in": "path",
+                        "description": "Find user by nickname",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserMapper"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No User Found"
+                    }
+                }
+            }
+        },
+        "/api/update-nickname/{user}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user nickname",
+                "description": "Update user nickname",
+                "operationId": "a015138fd2ae2cc3a942e75e977b60d9",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NicknameUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User after the update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserMapper"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Failed validation of given params"
+                    }
+                }
+            }
+        },
         "/api/users/{user}": {
             "get": {
                 "tags": [
@@ -151,6 +234,24 @@
                         "description": "name",
                         "type": "string",
                         "example": "Jane Doe"
+                    },
+                    "nick_name": {
+                        "description": "nick_name",
+                        "type": "string",
+                        "example": "JaneDoe"
+                    }
+                },
+                "type": "object"
+            },
+            "NicknameUpdateRequest": {
+                "description": "Nickname Update Request Body",
+                "properties": {
+                    "nick_name": {
+                        "description": "Nick name",
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 3,
+                        "example": "Jane Doe"
                     }
                 },
                 "type": "object"
@@ -169,6 +270,13 @@
                         "maxLength": 191,
                         "minLength": 1,
                         "example": "Jane Doe"
+                    },
+                    "nick_name": {
+                        "description": "Nick name",
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 3,
+                        "example": "JaneDoe"
                     },
                     "email": {
                         "description": "User email",
@@ -196,6 +304,13 @@
                         "maxLength": 191,
                         "minLength": 1,
                         "example": "Jane Doe"
+                    },
+                    "nick_name": {
+                        "description": "Nick name",
+                        "type": "string",
+                        "maxLength": 30,
+                        "minLength": 3,
+                        "example": "JaneDoe"
                     },
                     "email": {
                         "description": "User email",
