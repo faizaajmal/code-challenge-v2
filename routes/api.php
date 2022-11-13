@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NicknameController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('users')->group(function () {
+Route::prefix('users')->group(function() {
     Route::post('', [UserController::class, 'store'])->name('user.store');
     Route::get('{user}', [UserController::class, 'show'])->name('user.show');
     Route::put('{user}', [UserController::class, 'update'])->name('user.update');
 });
+    Route::get('user/{nickname}', [NicknameController::class, 'show'])->name('nickname.show');
+    Route::put('update-nickname/{user}', [NicknameController::class, 'update'])->name('nickname.update');
