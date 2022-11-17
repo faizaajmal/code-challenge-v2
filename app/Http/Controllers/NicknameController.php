@@ -18,13 +18,13 @@ class NicknameController extends Controller
 
     /**
          * @OA\Get(
-         *     path="/api/user/{nickname}",
+         *     path="/api/user",
          *     tags={"Users"},
          *     summary="Find user by nickname",
          *     description="returns user",
          *     @OA\Parameter(
          *          name="nickname",
-         *          in="path",
+         *          in="query",
          *          description="Find user by nickname",
          *          required=true,
          *          @OA\Schema(

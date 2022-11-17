@@ -20,5 +20,5 @@ Route::prefix('users')->group(function() {
     Route::get('{user}', [UserController::class, 'show'])->name('user.show');
     Route::put('{user}', [UserController::class, 'update'])->name('user.update');
 });
-    Route::get('user/{nickname}', [NicknameController::class, 'show'])->name('nickname.show');
+    Route::get('user', [NicknameController::class, 'show'])->name('nickname.show');
     Route::put('update-nickname/{user}', [NicknameController::class, 'update'])->name('nickname.update');

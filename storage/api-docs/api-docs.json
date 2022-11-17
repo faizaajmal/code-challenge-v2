@@ -14,18 +14,18 @@
         }
     ],
     "paths": {
-        "/api/user/{nickname}": {
+        "/api/user": {
             "get": {
                 "tags": [
                     "Users"
                 ],
                 "summary": "Find user by nickname",
                 "description": "returns user",
-                "operationId": "b7ea87b507bdd865a1495b40ad7daf95",
+                "operationId": "0e4dcf88aa16b050b2ecac5eb7bc7da1",
                 "parameters": [
                     {
                         "name": "nickname",
-                        "in": "path",
+                        "in": "query",
                         "description": "Find user by nickname",
                         "required": true,
                         "schema": {
